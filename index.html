@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>坦克大战</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            display: block;
+            margin: 0 auto;
+        }
+        #gameControls {
+            text-align: center;
+            margin: 20px;
+        }
+        .control-group {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameControls">
+        <div class="control-group">
+            <label>游戏模式：</label>
+            <select id="gameMode">
+                <option value="pvp">双人对战</option>
+                <option value="pve">单人对战AI</option>
+                <option value="multi">多人混战</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label>AI数量：</label>
+            <select id="aiCount">
+                <option value="1">1个</option>
+                <option value="2">2个</option>
+                <option value="3">3个</option>
+            </select>
+        </div>
+        <button id="startGame">开始游戏</button>
+    </div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="game.js"></script>
+</body>
+</html> 
