@@ -730,7 +730,7 @@ class Bullet {
     draw(ctx) {
         ctx.save();
         
-        // �����������制轨迹
+        // �������������制轨迹
         if (this.trail.length > 1) {
             ctx.beginPath();
             ctx.moveTo(this.trail[0].x, this.trail[0].y);
@@ -1695,8 +1695,8 @@ class Game {
 
         const gameMode = document.getElementById('gameMode').value;
         
-        if (gameMode === 'pvp') {
-            // 双人对战模式
+        // 在PVP和多人混战模式下都添加玩家2
+        if (gameMode === 'pvp' || gameMode === 'multi') {
             const player2Tank = new Tank(600, 300, 'red', {
                 up: 'ArrowUp',
                 down: 'ArrowDown',
@@ -1705,10 +1705,12 @@ class Game {
                 shoot: 'Numpad0'
             });
             this.tanks.push(player2Tank);
-        } else if (gameMode === 'pve' || gameMode === 'multi') {
-            // PVE 或多人混战模式
+        }
+
+        // 在PVE和多人混战模式下添加AI
+        if (gameMode === 'pve' || gameMode === 'multi') {
             const aiCount = parseInt(document.getElementById('aiCount').value);
-            const colors = ['red', 'green', 'purple'];
+            const colors = ['green', 'purple', 'orange'];  // 添加更多颜色选项
             
             for (let i = 0; i < aiCount; i++) {
                 const aiTank = new Tank(
