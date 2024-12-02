@@ -9,107 +9,86 @@
             font-family: 'Microsoft YaHei', sans-serif;
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .game-container {
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .game-sidebar {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .game-header {
             text-align: center;
-            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .game-header h1 {
             color: #2c3e50;
             margin: 0;
             font-size: 32px;
+            font-weight: bold;
         }
         
         canvas {
             border: 2px solid #34495e;
-            border-radius: 8px;
+            border-radius: 12px;
             display: block;
-            margin: 20px auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
         }
         
         #gameControls {
             text-align: center;
-            margin: 30px auto;
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .control-group {
-            margin: 15px 0;
+            margin: 20px 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             gap: 10px;
         }
 
-        .game-stats {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .player-stats {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .health-bar, .armor-bar {
-            width: 100px;
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .health-bar > div {
-            height: 100%;
-            background: #ff4757;
-            transition: width 0.3s ease;
-        }
-
-        .armor-bar > div {
-            height: 100%;
-            background: #2e86de;
-            transition: width 0.3s ease;
-        }
-        
-        label {
+        .control-group label {
             font-size: 16px;
             color: #2c3e50;
             font-weight: 500;
+            text-align: left;
         }
         
         select {
-            padding: 8px 12px;
-            border: 1px solid #dcdfe6;
-            border-radius: 4px;
+            padding: 10px;
+            border: 2px solid #dcdfe6;
+            border-radius: 8px;
             font-size: 14px;
             color: #606266;
             background-color: #fff;
             cursor: pointer;
             transition: all 0.3s;
+            width: 100%;
         }
         
         select:hover {
@@ -120,75 +99,139 @@
             background-color: #409eff;
             color: white;
             border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 10px;
+            width: 100%;
+            margin-top: 20px;
         }
         
         #startGame:hover {
             background-color: #66b1ff;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
         }
         
         #startGame:active {
-            transform: translateY(1px);
+            transform: translateY(0);
         }
 
         .controls-info {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 30px;
+            padding: 20px;
             background: #f8f9fa;
             border-radius: 8px;
             font-size: 14px;
             color: #666;
+            text-align: left;
         }
 
         .controls-info h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 15px 0;
             color: #2c3e50;
+            font-size: 18px;
+        }
+
+        .controls-info p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .game-stats {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .player-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .health-bar, .armor-bar {
+            width: 120px;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .health-bar > div {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            transition: width 0.3s ease;
+        }
+
+        .armor-bar > div {
+            height: 100%;
+            background: linear-gradient(90deg, #2e86de, #54a0ff);
+            transition: width 0.3s ease;
+        }
+
+        .key-hint {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #eee;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 2px;
         }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div class="game-header">
-            <h1>坦克大战</h1>
-        </div>
-        
-        <div id="gameControls">
-            <div class="control-group">
-                <label>游戏模式：</label>
-                <select id="gameMode">
-                    <option value="pvp">双人对战</option>
-                    <option value="pve">单人对战AI</option>
-                    <option value="multi">多人混战</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label>AI数量：</label>
-                <select id="aiCount">
-                    <option value="1">1个</option>
-                    <option value="2">2个</option>
-                    <option value="3">3个</option>
-                </select>
-            </div>
-            <button id="startGame">开始游戏</button>
+        <div class="game-sidebar">
+            <div id="gameControls">
+                <div class="control-group">
+                    <label>游戏模式</label>
+                    <select id="gameMode">
+                        <option value="pvp">双人对战</option>
+                        <option value="pve">单人对战AI</option>
+                        <option value="multi">多人混战</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>AI数量</label>
+                    <select id="aiCount">
+                        <option value="1">1个</option>
+                        <option value="2">2个</option>
+                        <option value="3">3个</option>
+                    </select>
+                </div>
+                <button id="startGame">开始游戏</button>
 
-            <div class="controls-info">
-                <h3>操作说明</h3>
-                <p>玩家1: WASD移动，J键射击</p>
-                <p>玩家2: 方向键移动，数字键0射击</p>
+                <div class="controls-info">
+                    <h3>操作说明</h3>
+                    <p>玩家1: <span class="key-hint">WASD</span> 移动，<span class="key-hint">J</span> 射击</p>
+                    <p>玩家2: <span class="key-hint">↑↓←→</span> 移动，<span class="key-hint">0</span> 射击</p>
+                    <p>按 <span class="key-hint">V</span> 切换瞄准线</p>
+                </div>
             </div>
-        </div>
-
-        <div class="game-stats" id="gameStats">
-            <!-- 游戏状态会通过JavaScript动态更新 -->
         </div>
 
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="game-main">
+            <div class="game-header">
+                <h1>坦克大战</h1>
+            </div>
+
+            <div class="game-stats" id="gameStats">
+                <!-- 游戏状态会通过JavaScript动态更新 -->
+            </div>
+
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
     </div>
     <script src="game.js"></script>
 </body>
